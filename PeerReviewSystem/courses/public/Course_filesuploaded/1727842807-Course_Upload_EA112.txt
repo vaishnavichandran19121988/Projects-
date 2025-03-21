@@ -1,0 +1,10 @@
+Course Code, Course Name,
+IFN505, Information Security Fundamentals,
+Teachers,
+Minerva McGonagall, Minerva_mcg@university.com
+Students,
+S9876543,
+S1239876
+Assessment,
+Assessment1, Security Policies, Write a brief on current cybersecurity policies., 50, 2024-03-01 23:59, student-select
+Assessment2, Network Security, Analyze a provided network layout for vulnerabilities., 50, 2024-05-30 23:59, teacher-assign

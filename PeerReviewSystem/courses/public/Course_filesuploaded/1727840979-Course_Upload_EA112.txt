@@ -1,0 +1,6 @@
+Course Code, Course Name
+EA 112, Enterprise Architecture
+Severus Snape , Severus_snape@university.om
+Students, S1234567,S76543
+Assessment1, Midterm Exam, Complete the multiple-choice questions., 100, 2023-10-15 23:59, student-select
+Assessment2, Final Project, Submit a detailed architecture proposal., 100, 2023-12-20 23:59, teacher-assign

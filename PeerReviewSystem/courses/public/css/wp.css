@@ -1,0 +1,1272 @@
+/* Global Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0; /* Reset the default margin */
+}
+
+h1, h2, h3, h4 {
+    font-weight: bold;
+    color: #0056b3; /* A more vibrant blue */
+    margin: 20px 0 10px;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Sidebar Styles */
+.sidebar {
+    width: 150px;
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    position: fixed;
+    height: 100%;
+}
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100px; /* Even narrower on smaller screens */
+    }
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    margin-bottom: 5px;
+    color: #333;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-item i {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.nav-item:hover, .nav-item:focus {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Main content area */
+.main-content {
+    margin-left: 270px; /* Account for sidebar width */
+    padding: 20px;
+    flex: 1;
+}
+/* Ensure the body and html take the full height */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Main wrapper to handle flexbox layout */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensure it takes the full viewport height */
+}
+
+
+
+
+.footer {
+    background-color: #000;  /* Black background */
+    color: white; /* White text */
+    text-align: center;
+    padding: 15px 0; /* Adjust padding as needed */
+    position: relative;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+}
+
+/* Ensure the text is centered */
+.footer p {
+    margin: 0;
+    line-height: normal; /* Reset line height */
+    color: white;
+}
+
+
+
+
+/* Jumbotron Styles for welcome page  */
+.jumbotron {
+    background-color: #007bff; /* Light blue background */
+    color: white; /* White text */
+    padding: 1.5rem 1rem;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 600px; /* Limit the width */
+    margin: 20px auto; /* Center the jumbotron */
+}
+
+.jumbotron h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fff; /* White heading */
+}
+
+.jumbotron p.lead {
+    font-size: 1.25rem;
+    color: #e2e2e2; /* Slightly lighter than white for contrast */
+}
+
+.jumbotron-small a.btn-primary {
+    background-color: #f0f0f0; /* Light grayish white for the button */
+    color: #333; /* Dark text for contrast */
+    border: none;
+}
+
+.jumbotron-small a.btn-primary:hover {
+    background-color: #dcdcdc; /* Slightly darker gray on hover */
+    color: #333; /* Maintain the dark text on hover */
+}
+
+.jumbotron-small a.btn-secondary {
+    background-color: #e6e6e6; /* Secondary button, another shade of white */
+    color: #333; /* Dark text for contrast */
+    border: none;
+}
+
+.jumbotron-small a.btn-secondary:hover {
+    background-color: #cccccc; /* Darker gray on hover */
+    color: #333; /* Maintain the dark text on hover */
+}
+
+
+
+/* Login and Registration Page Styling */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    background-color: #ffffff; /* Optional: changes the background to white */
+}
+
+.login-box {
+    width: 300px; /* Width of the login form */
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.login-box h1 {
+    color: #333;
+    text-align: center;
+}
+
+.login-box p {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.login-box input[type="text"],
+.login-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-box button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background-color: #0056b3;
+}
+
+/* Create Assessment Form Specific Styles */
+.create-assessment-form {
+    max-width: 800px; /* Adjust width as necessary */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.create-assessment-form .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.create-assessment-form label {
+    display: block; /* Ensures the label is on its own line */
+    font-weight: bold; /* Makes label text bold */
+    margin-bottom: 5px; /* Space between label and input field */
+}
+
+.create-assessment-form input[type="text"],
+.create-assessment-form textarea {
+    width: 100%; /* Full width of the form group */
+    padding: 8px; /* Comfortable padding inside inputs */
+    border: 1px solid #ccc; /* Subtle border style */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.create-assessment-form .alert-danger {
+    margin-top: 5px; /* Space between input field and error message */
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+}
+
+.form-group.button-container { /* Assuming you have a div wrapping your button */
+    display: flex;
+    justify-content: center; /* This centers the button horizontally in the flex container */
+    margin-top: 20px; /* Optional: Adds some space above the button */
+}
+
+
+.create-assessment-form button {
+    padding: 10px 20px; /* Sufficient padding for the button */
+    background-color: #0056b3; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.create-assessment-form button:hover {
+    background-color: #003875; /* Darker shade on hover */
+}
+
+/* Course Management Form Specific Styles */
+
+.course-management .container {
+    max-width: 1400px; /* Wider container to fit more cards horizontally */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Card Styling for Course Management */
+.course-management .card {
+    width: calc(33.33% - 20px); /* 3 cards per row, minus gap */
+    margin-bottom: 20px; /* Space between rows */
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15); /* Optional shadow */
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top; /* Ensure cards are aligned at the top */
+}
+
+/* Card Body */
+.course-management .card-body {
+    padding: 15px;
+}
+
+/* Card Title */
+.course-management .card-title {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Buttons within Cards */
+.course-management .btn-primary {
+    background-color: #0056b3;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+/* Make cards responsive */
+@media (max-width: 768px) {
+    .course-management .card {
+        width: calc(50% - 20px); /* Two cards per row for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .course-management .card {
+        width: 100%; /* Full width for small screens (one card per row) */
+    }
+}
+
+.course-management-footer {
+    background-color: #f8f9fa; /* Light background color */
+    padding: 20px; /* Adds padding inside the footer */
+    text-align: center; /* Center-align the text */
+    border-top: 1px solid #dee2e6; /* Subtle border at the top */
+    margin-top: 40px; /* Space above the footer */
+    position: relative; /* Keeps footer in relative position */
+    bottom: 0; /* Ensure it's aligned at the bottom */
+    width: 100%; /* Full width of the container */
+}
+
+.course-management-footer p {
+    margin: 0; /* No margin on paragraph text */
+    color: #6c757d; /* Slightly muted color for text */
+}
+
+
+
+/* Manage Enrollments Form Specific Styles */
+
+
+.manage-enrollments .container {
+    margin-top: 1.5rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    max-width: 1200px; /* Adjust the width as necessary */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Student Card Styling */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.table th, .table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.table-bordered th, .table-bordered td {
+    border: 1px solid #ddd;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Profile Edit Form Specific Styles */
+.profile-edit-form {
+    max-width: 800px; /* Adjust width as necessary */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.profile-edit-form .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.profile-edit-form label {
+    display: block; /* Ensures the label is on its own line */
+    font-weight: bold; /* Makes label text bold */
+    margin-bottom: 5px; /* Space between label and input field */
+}
+
+.profile-edit-form input[type="text"],
+.profile-edit-form input[type="email"],
+.profile-edit-form input[type="file"],
+.profile-edit-form textarea {
+    width: 100%; /* Full width of the form group */
+    padding: 8px; /* Comfortable padding inside inputs */
+    border: 1px solid #ccc; /* Subtle border style */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.profile-edit-form .alert-danger {
+    margin-top: 5px; /* Space between input field and error message */
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+}
+
+/* Profile Photo Section */
+.profile-edit-form .profile-photo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-edit-form .profile-photo img {
+    width: 150px; /* Adjust as needed */
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%; /* Make it a circle */
+    border: 2px solid #ccc;
+}
+
+.profile-edit-form .profile-photo i {
+    font-size: 5rem;
+    color: #ccc; /* Default icon color */
+}
+
+/* Button Container */
+.profile-edit-form .button-container {
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 20px; /* Space above the button */
+}
+
+.profile-edit-form button {
+    padding: 10px 20px; /* Sufficient padding for the button */
+    background-color: #0056b3; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.profile-edit-form button:hover {
+    background-color: #003875; /* Darker shade on hover */
+}
+profile-footer {
+    background-color: #f8f9fa;
+    padding: 20px;
+    text-align: center;
+    border-top: 1px solid #dee2e6;
+    margin-top: 40px; /* To ensure space above the footer */
+    position: relative; /* Ensure it stays at the bottom of the page */
+}
+
+.profile-footer p {
+    margin: 0;
+    color: #6c757d;
+}
+
+/* Course assesment statistics */
+
+/* Assessment Statistics Page Styles */
+.assessment-statistics {
+    max-width: 1000px; /* Adjust width as necessary */
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.assessment-statistics h2 {
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Statistics Overview Boxes */
+.statistics-overview {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.stat-box {
+    flex: 1;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.stat-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.stat-box p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #343a40;
+}
+
+/* Table Styles */
+.table-responsive {
+    margin-top: 40px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+}
+
+.table th, .table td {
+    padding: 15px;
+    text-align: left;
+}
+
+.table thead th {
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+
+.table-bordered {
+    border: 1px solid #dee2e6;
+}
+
+.table-bordered td, .table-bordered th {
+    border: 1px solid #dee2e6;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: #f9f9f9;
+}
+
+/* Hide all sections by default */
+.content-section {
+    display: none;
+}
+
+/* Form Group Styles for Enrollment Sections */
+
+/* Initially hide all sections */
+.content-section {
+    display: none;
+}
+
+/* Show the selected section based on :target */
+#yet-to-enroll:target {
+    display: block;
+}
+
+#enrolled:target {
+    display: block;
+}
+
+/* Ensure one section is visible by default (show Yet to Enroll by default) */
+#yet-to-enroll {
+    display: block;
+}
+
+/* Styling for form buttons */
+.enrollment-nav a {
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+/* Additional form group styles for consistency */
+.form-group .form-group-button {
+    margin-top: 20px;
+    display: inline-block;
+}
+
+/* Styling for Tabs and Form Group specific to Manage Enrollment View */
+/* Form Group for Manage Enrollments View */
+.manage-enrollments-form {
+    max-width: 1200px; /* Limit the form width */
+    margin: 0 auto; /* Center the form */
+    padding: 20px;
+}
+
+.manage-enrollments-form h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #2d3748; /* Dark gray tone */
+}
+
+.manage-enrollments-form .table {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #f9fafb; /* Light gray background */
+    border-collapse: collapse;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Softer shadow */
+}
+
+.manage-enrollments-form .table th, 
+.manage-enrollments-form .table td {
+    padding: 12px 15px;
+    border: 1px solid #e2e8f0; /* Light gray border */
+    text-align: center;
+    color: #4a5568; /* Medium gray text */
+}
+
+.manage-enrollments-form .table th {
+    background-color: #edf2f7; /* Soft gray header background */
+    font-weight: bold;
+}
+
+.manage-enrollments-form .table td {
+    vertical-align: middle;
+}
+
+.manage-enrollments-form .text-success {
+    color: #38a169; /* Green for enrolled */
+}
+
+.manage-enrollments-form .text-danger {
+    color: #e53e3e; /* Red for not enrolled */
+}
+
+.manage-enrollments-form .btn {
+    padding: 8px 15px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.manage-enrollments-form .btn-primary {
+    background-color: #4a5568; /* Gray button for enrollment */
+    color: white;
+}
+
+.manage-enrollments-form .btn-primary:hover {
+    background-color: #2d3748; /* Darker gray on hover */
+}
+
+.manage-enrollments-form .btn-danger {
+    background-color: #e53e3e; /* Red button for remove */
+    color: white;
+}
+
+.manage-enrollments-form .btn-danger:hover {
+    background-color: #c53030; /* Darker red on hover */
+}
+
+.manage-enrollments-form .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.manage-enrollments-form .pagination .page-item {
+    margin: 0 5px;
+}
+
+.manage-enrollments-form .pagination .page-item a {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #e2e8f0; /* Light gray border */
+    background-color: #edf2f7; /* Soft gray background */
+    text-decoration: none;
+    color: #4a5568; /* Medium gray text */
+}
+
+.manage-enrollments-form .pagination .page-item a:hover {
+    background-color: #4a5568; /* Gray hover */
+    color: white;
+}
+
+/* Ensure form button alignment */
+.manage-enrollments-form .form-group {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+
+
+
+
+/* Lecturer Main Form Specific Styles */
+.lecturer-dashboard {
+    margin-bottom: 50px; /* Ensure spacing between content and footer */
+}
+
+.course-container .row {
+    display: flex;
+    flex-wrap: wrap; /* Ensure the cards wrap into new rows */
+    justify-content: space-between; /* Ensure even spacing between cards */
+}
+
+.course-container .col-md-4 {
+    flex: 0 0 30%; /* Force 3 cards per row with consistent spacing */
+    max-width: 30%; /* Ensure cards do not exceed 3 per row */
+    margin-bottom: 30px; /* Add space between rows */
+}
+
+.course-container .card {
+    background-color: #fff; /* White background for the course card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    border-radius: 8px; /* Rounded corners */
+    height: 100%; /* Ensure all cards have equal height */
+}
+
+.course-container .card-body {
+    padding: 15px;
+}
+
+.course-container .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.course-container .btn-card {
+    background-color: #0056b3; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.course-container .btn-card:hover {
+    background-color: #003875; /* Button hover effect */
+}
+
+/* Ensure Footer is positioned at the bottom of the page */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Shared course card styles for Lecturer and Student Dashboard */
+.course-container .row {
+    display: flex;
+    flex-wrap: wrap; /* Ensure the cards wrap into new rows */
+    justify-content: space-between; /* Ensure even spacing between cards */
+}
+
+.course-container .col-md-4 {
+    flex: 0 0 30%; /* Force 3 cards per row with consistent spacing */
+    max-width: 30%; /* Ensure cards do not exceed 3 per row */
+    margin-bottom: 30px; /* Add space between rows */
+}
+
+.course-container .card {
+    background-color: #fff; /* White background for the course card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow effect */
+    border-radius: 8px; /* Rounded corners */
+    height: 100%; /* Ensure all cards have equal height */
+}
+
+.course-container .card-body {
+    padding: 15px;
+}
+
+.course-container .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.course-container .btn-card {
+    background-color: #0056b3; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.course-container .btn-card:hover {
+    background-color: #003875; /* Button hover effect */
+}
+
+
+
+/* Course Profile Form Specific Styles */
+.course-profile-form {
+    max-width: 800px; /* Adjust width for uniformity */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #fff; /* White background for uniform look */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow effect */
+    border-radius: 8px; /* Rounded corners for uniformity */
+}
+
+.course-profile-form h2, .course-profile-form h4 {
+    font-size: 24px; /* Adjust the font size to match */
+    font-weight: bold;
+    margin-bottom: 20px; /* Add spacing below headings */
+    color: #333;
+}
+
+.course-profile-form .list-group-item {
+    background-color: #fff;
+    border: 1px solid #ddd; /* Border styling */
+    margin-bottom: 15px; /* Space between items */
+    padding: 15px;
+    border-radius: 4px; /* Consistent rounded corners */
+}
+
+/* Style for teacher and assessment labels */
+.course-profile-form .list-group-item strong {
+    font-weight: bold;
+    color: #0056b3; /* Consistent with button color in assessment form */
+}
+
+/* Button style matching the create-assessment-form */
+.course-profile-form .btn {
+    padding: 10px 20px;
+    background-color: #0056b3; /* Button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.course-profile-form .btn:hover {
+    background-color: #003875; /* Darker shade on hover */
+}
+
+
+
+/* Manage Assessments Form Group Styling */
+.manage-assessments-form .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.manage-assessments-form .btn {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.manage-assessments-form .btn-primary {
+    background-color: #4a5568; /* Gray button for View */
+    color: white;
+}
+
+.manage-assessments-form .btn-primary:hover {
+    background-color: #2d3748; /* Darker gray on hover */
+}
+
+.manage-assessments-form .btn-danger {
+    background-color: #e53e3e; /* Red button for Delete */
+    color: white;
+}
+
+.manage-assessments-form .btn-danger:hover {
+    background-color: #c53030; /* Darker red on hover */
+}
+
+/* Card Styling */
+/* Manage Assessments Form Group Styling */
+.manage-assessments-form .button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.manage-assessments-form .btn {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.manage-assessments-form .btn-primary {
+    background-color: #4a5568; /* Gray button for View */
+    color: white;
+}
+
+.manage-assessments-form .btn-primary:hover {
+    background-color: #2d3748; /* Darker gray on hover */
+}
+
+.manage-assessments-form .btn-danger {
+    background-color: #e53e3e; /* Red button for Delete */
+    color: white;
+}
+
+.manage-assessments-form .btn-danger:hover {
+    background-color: #c53030; /* Darker red on hover */
+}
+
+/* Details Button Styling */
+.manage-assessments-form .btn-info {
+    background-color: #3182ce; /* Blue button for Details */
+    color: white;
+}
+
+.manage-assessments-form .btn-info:hover {
+    background-color: #2b6cb0; /* Darker blue on hover */
+}
+
+/* Card Styling */
+.manage-assessments-form .card {
+    background-color: #ffffff; /* White background for the cards */
+    border: 1px solid #e2e8f0; /* Light gray border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 15px; /* Reduced padding for smaller size */
+}
+
+/* Peer Review Group Form */
+.peer-review-group-form h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+/* Group Card Styling */
+.group-card {
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+}
+
+/* Group Name Styling */
+.group-card .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+}
+
+/* Student List Styling */
+.group-card ul li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #4a5568;
+}
+
+/* Student Link Styling */
+.student-link {
+    font-weight: bold;
+    color: #3182ce;
+    text-decoration: none;
+}
+
+.student-link:hover {
+    color: #2b6cb0;
+    text-decoration: underline;
+}
+
+/* Remove Button Styling */
+.group-card form .btn-danger {
+    margin-left: 10px;
+}
+
+
+
+.manage-assessments-form .card-body {
+    padding: 15px; /* Reduced padding inside card body */
+}
+
+.manage-assessments-form .card-title {
+    font-size: 1.1rem; /* Slightly smaller title */
+    font-weight: bold;
+    color: #2d3748;
+}
+
+.manage-assessments-form .card-text {
+    font-size: 0.85rem; /* Slightly smaller text */
+    color: #4a5568;
+}
+
+.manage-assessments-form .card p {
+    margin-bottom: 8px;
+}
+/* Teacher-Assign Form Group Styling */
+/* Teacher-Assign Form Group Styling */
+.teacherassign-form .teacherassign-button {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/* Ensure consistent button color for the "Create Teacher-Assign Group" button */
+.teacherassign-form .btn-warning {
+    background-color: #ffcc00; /* Yellow button as per your requirement */
+    color: white;
+}
+
+.teacherassign-form .btn-warning:hover {
+    background-color: #e6b800; /* Darker yellow on hover */
+}
+
+/* Card Styling for Teacher-Assign Form */
+.teacherassign-form .card {
+    background-color: #ffffff; /* White background for the cards */
+    border: 1px solid #e2e8f0; /* Light gray border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow for better visibility */
+    padding: 15px;
+}
+
+/* Button Styling for Consistency */
+.teacherassign-form .btn {
+    padding: 8px 12px;
+    font-size: 0.875rem;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+/* Primary button for View */
+.teacherassign-form .btn-primary {
+    background-color: #4a5568; /* Gray button for View */
+    color: white;
+}
+
+.teacherassign-form .btn-primary:hover {
+    background-color: #2d3748; /* Darker gray on hover */
+}
+
+/* Danger button for Delete */
+.teacherassign-form .btn-danger {
+    background-color: #e53e3e; /* Red button for Delete */
+    color: white;
+}
+
+.teacherassign-form .btn-danger:hover {
+    background-color: #c53030; /* Darker red on hover */
+}
+
+/* Info button for Details */
+.teacherassign-form .btn-info {
+    background-color: #3182ce; /* Blue button for Details */
+    color: white;
+}
+
+.teacherassign-form .btn-info:hover {
+    background-color: #2b6cb0; /* Darker blue on hover */
+}
+
+
+/* Enroll in a Course Form Specific Styles */
+.enroll-course-form {
+    max-width: 800px; /* Adjust width as necessary */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light background color for the form */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border-radius: 8px;
+}
+
+.enroll-course-form .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.enroll-course-form label {
+    display: block; /* Ensures the label is on its own line */
+    font-weight: bold; /* Makes label text bold */
+    margin-bottom: 5px; /* Space between label and input field */
+}
+
+.enroll-course-form input[type="text"],
+.enroll-course-form textarea {
+    width: 100%; /* Full width of the form group */
+    padding: 8px; /* Comfortable padding inside inputs */
+    border: 1px solid #ccc; /* Subtle border style */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.enroll-course-form .alert-success,
+.enroll-course-form .alert-danger {
+    margin-top: 5px; /* Space between input field and message */
+    padding: 10px;
+    border-radius: 4px;
+}
+
+.enroll-course-form .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.enroll-course-form .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+.enroll-course-form button {
+    padding: 10px 20px; /* Sufficient padding for the button */
+    background-color: #28a745; /* Green button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.enroll-course-form button:hover {
+    background-color: #218838; /* Darker green on hover */
+}
+
+/* Peer Review Form Specific Styles */
+.peer-review-form {
+    max-width: 800px; /* Adjust width as necessary */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light grey background for the form */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.peer-review-form .form-group {
+    margin-bottom: 20px; /* Space between form groups */
+}
+
+.peer-review-form label {
+    display: block; /* Ensures the label is on its own line */
+    font-weight: bold; /* Makes label text bold */
+    margin-bottom: 5px; /* Space between label and input field */
+}
+
+.peer-review-form select,
+.peer-review-form textarea {
+    width: 100%; /* Full width of the form group */
+    padding: 8px; /* Comfortable padding inside inputs */
+    border: 1px solid #ccc; /* Subtle border style */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.peer-review-form .alert-danger {
+    margin-top: 5px; /* Space between input field and error message */
+    padding: 10px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 4px;
+}
+
+.peer-review-form .button-container {
+    display: flex;
+    justify-content: center; /* This centers the button horizontally in the flex container */
+    margin-top: 20px; /* Optional: Adds some space above the button */
+}
+
+.peer-review-form button {
+    padding: 10px 20px; /* Sufficient padding for the button */
+    background-color: #0056b3; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.peer-review-form button:hover {
+    background-color: #003875; /* Darker shade on hover */
+}
+
+
+/* Received Reviews Form Specific Styles */
+.received-reviews-form {
+    max-width: 800px; /* Adjust width as necessary */
+    margin: 20px auto; /* Center the form horizontally */
+    padding: 20px;
+    background-color: #f9f9f9; /* Light grey background for the form */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.received-reviews-form .list-group-item {
+    margin-bottom: 20px; /* Space between review items */
+    padding: 15px;
+    background-color: #ffffff; /* White background for review items */
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow for reviews */
+    border-radius: 8px; /* Rounded corners for review items */
+}
+
+.received-reviews-form .review-header {
+    margin-bottom: 10px; /* Space between header and content */
+}
+
+.received-reviews-form .rating-section {
+    margin-top: 10px;
+}
+
+.received-reviews-form select {
+    width: 100%; /* Full width for rating dropdown */
+    padding: 8px; /* Comfortable padding */
+    border: 1px solid #ccc; /* Subtle border */
+    border-radius: 4px; /* Rounded corners */
+}
+
+.received-reviews-form .form-group textarea {
+    width: 100%; /* Full width for comment textarea */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.received-reviews-form .form-group button-container {
+    display: flex;
+    justify-content: center; /* Center the comment button horizontally */
+    margin-top: 10px;
+}
+
+.received-reviews-form button {
+    padding: 8px 16px; /* Adjusted padding for smaller buttons */
+    background-color: #0056b3; /* Primary button color */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.received-reviews-form button:hover {
+    background-color: #003875; /* Darker hover state */
+}
+
+
+.custom-review-container {
+    background-color: #f9f9f9; /* Light grey background to match your form */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.custom-reviews-received,
+.custom-reviews-submitted {
+    margin-bottom: 20px;
+    background-color: #ffffff; /* White background for consistency */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05); /* Subtle shadow similar to your reviews form */
+}
+
+.custom-assign-score {
+    padding: 20px;
+    background-color: #ffffff; /* White background for form */
+    border-radius: 8px;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.05); /* Consistent shadow */
+}
+
+.custom-score-input input {
+    border-radius: 4px;
+    margin-right: 10px;
+    border: 1px solid #ccc; /* Consistent border for form elements */
+    padding: 8px;
+}
+
+.custom-score-input button {
+    border-radius: 4px;
+    background-color: #0056b3; /* Primary button color */
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.custom-score-input button:hover {
+    background-color: #003875; /* Consistent hover color */
+}
