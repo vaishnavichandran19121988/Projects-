@@ -56,7 +56,7 @@ A full-stack Laravel application for managing peer reviews in academic settings.
 - ✅ Clean UI using Bootstrap with template inheritance
 - 🔐 SQLite DB and session-based auth
 
-📎 [View Laravel App](./laravel_peer_review/README.md)
+
 
 ---
 
