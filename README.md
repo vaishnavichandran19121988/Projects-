@@ -15,7 +15,7 @@ Fetches and analyzes historical stock data using the `yfinance` API.
 - 💾 Saves cleaned dataset to CSV for dashboard use
 - ✅ Great starting point for financial dashboards or time series modeling
 
-📎 [View Notebook](./yahoo_finance_stock_dashboard.ipynb)
+
 
 ---
 
@@ -28,11 +28,11 @@ A project using unsupervised learning (K-Means) to group customers based on beha
 - 🧠 Clustering & segmentation
 - 📈 Visual insights for marketing strategies
 
-📎 Notebook coming soon...
+
 
 ---
 
-## 🚗 Crash Data Analysis Dashboard
+## 🚗 Crash Data Analysis Dashboard (In progress)
 
 A powerful crash analysis project using real-world accident datasets and Python.
 
@@ -42,7 +42,7 @@ A powerful crash analysis project using real-world accident datasets and Python.
 - 📤 Built using Streamlit and Plotly for interactivity
 - ✅ Ideal for public safety, transport authorities, or city planning
 
-📎 [View Dashboard Notebook](./crash_data_analysis_dashboard.ipynb)
+
 
 ---
 
