@@ -1,176 +1,128 @@
 import streamlit as st
 import pandas as pd
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 import plotly.express as px
 import json
 
-st.set_page_config(layout='wide')
-sns.set_theme(style="whitegrid")
-st.markdown("<h1 style='text-align: center;'>🚗 Crash Data Analysis Dashboard</h1>", unsafe_allow_html=True)
-
+# Load crash data
 @st.cache_data
 def load_data():
-    return pd.read_csv("crash_data.csv")
+    crash = pd.read_csv("18ee2911-992f-40ed-b6ae-e756859786e6 (1).csv")
+    casualty = pd.read_csv("177dc50c-0cf7-46ba-8a69-99695aeaa46a (1).csv")
+    driver = pd.read_csv("dd13a889-2a48-4b91-8c64-59f824ed3d2c.csv")
+    return crash, casualty, driver
 
-df = load_data()
+# Load GeoJSON file
+@st.cache_data
+def load_geojson():
+    with open("qps_regions.geojson") as f:
+        return json.load(f)
 
+crash_df, casualty_df, driver_df = load_data()
+geojson = load_geojson()
 
+# Dashboard selector (replacing slider with horizontal radio buttons for visual dashboard effect)
+section = st.radio("\n", [
+    "Executive Summary",
+    "Severity & Cause Analysis",
+    "Regional Patterns"
+], horizontal=True)
 
+st.title("🚦 Queensland Crash Data Dashboard")
 
-# KPI Metrics
-total_crashes = df['Crash_ID'].nunique()
-total_fatalities = df['Count_Casualty_Fatality'].sum()
-avg_impact = round((df['Count_Casualty_Fatality'] * 3 + df['Casualty_Count']).mean(), 2)
-# Fatality Rate by Driver Category
-fatality_rate_by_category = df.groupby('Driver_Category').apply(lambda x: (x['Count_Casualty_Fatality'].sum() / x['Count_Crashes'].sum()) * 100)
-highest_fatality_rate_category = fatality_rate_by_category.idxmax()  # Category with the highest fatality rate
+# Executive Summary Section
+if section == "Executive Summary":
+    st.subheader("📍 Executive Summary")
 
+    total_crashes = crash_df["_id"].nunique()
+    total_fatalities = crash_df["Count_Fatality"].sum()
+    total_casualties = casualty_df["Casualty_Count"].sum()
+    total_hospitalised = crash_df["Count_Hospitalised"].sum()
 
-# Highest Fatality Age Group
-fatalities_by_age_group = df.groupby('Casualty_AgeGroup')['Count_Casualty_Fatality'].sum()
-highest_fatality_age_group = fatalities_by_age_group.idxmax()  # Age group with the highest fatality
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("🚗 Crashes", f"{total_crashes:,}")
+    col2.metric("💀 Fatalities", f"{int(total_fatalities):,}")
+    col3.metric("🏥 Hospitalised", f"{int(total_hospitalised):,}")
+    col4.metric("👥 Casualties", f"{int(total_casualties):,}")
 
-#Primary Reason with Highest Crash Count
-# Primary Reason with Highest Fatalities
-fatalities_by_reason = df.groupby('Primary_Reason')['Count_Casualty_Fatality'].sum()
-top_primary_reason_fatalities = fatalities_by_reason.idxmax() 
+    # Age Group Donut
+    fig_age = px.pie(casualty_df, names="Casualty_AgeGroup", hole=0.4, title="Age Group Distribution")
+    st.plotly_chart(fig_age, use_container_width=True)
 
-st.markdown("### 🔢 Key Crash Metrics")
-col1, col2, col3, col4,col5 = st.columns(5)
-col1.metric("🚗 Total Crashes", f"{total_crashes:,}")
-col2.metric("💀 Total Fatalities", f"{int(total_fatalities):,}")
-col3.metric("⚖️ Avg. Impact Score", avg_impact)
-col4.metric("🚨 Highest Fatality Age group", highest_fatality_age_group)
-col5.metric("💥 Primary Reason", top_primary_reason_fatalities)
+    # Road User Types
+    road_user = casualty_df.groupby("Casualty_Road_User_Type")[["Casualty_Count"]].sum().reset_index()
+    fig_user = px.bar(road_user, x="Casualty_Road_User_Type", y="Casualty_Count", title="Road User Types")
+    st.plotly_chart(fig_user, use_container_width=True)
 
-st.sidebar.header("📅 Filter by Year")
-years = sorted(df['Crash_Year'].dropna().unique())
-selected_year = st.sidebar.selectbox("Select Year", years)
-df = df[df['Crash_Year'] == selected_year]
+    # Driver License Type Breakdown (check for existence)
+    st.subheader("Driver Licence Info (if available)")
+    st.write("(Skipped because column not found)")
 
-tab1, tab2, tab3= st.tabs([
-    "📊 Overview",
-    "📉 Regional Analysis",
-    "🔥 Risk & Impact"
-])
-with tab1:
-    col1, col2 = st.columns(2)
+# Severity & Cause Analysis Section
+elif section == "Severity & Cause Analysis":
+    st.subheader("💥 Severity & Cause Analysis")
 
-    with col1:
-        st.subheader("1️⃣ Fatalities by Driver Category")
-        fig, ax = plt.subplots(figsize=(10, 6))
-        sns.barplot(data=df, x='Driver_Category', y='Count_Casualty_Fatality', estimator=sum, ci=None, ax=ax)
-        ax.set_ylabel("Fatalities")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        st.pyplot(fig)
-        st.caption("📌 Unlicensed and Provisional drivers are involved in the most fatal crashes.")
+    # Crash severity breakdown
+    severity = crash_df.groupby("Crash_Severity")[["_id"]].count().reset_index()
+    fig_sev = px.pie(severity, names="Crash_Severity", values="_id", title="Crash Severity Distribution")
+    st.plotly_chart(fig_sev, use_container_width=True)
 
-    with col2:
-        st.subheader("2️⃣ Casualties by Age Group")
-        fig, ax = plt.subplots(figsize=(10, 6))
-        sns.barplot(data=df, x='Casualty_AgeGroup', y='Casualty_Count', estimator=sum, ci=None, ax=ax)
-        ax.set_ylabel("Casualty Count")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        st.pyplot(fig)
-        st.caption("📌 Young drivers (16–24) are the most vulnerable casualty group.")
+    # Year vs Fatalities trend
+    year_fatal = crash_df.groupby("Crash_Year")[["Count_Fatality"]].sum().reset_index()
+    fig_trend = px.line(year_fatal, x="Crash_Year", y="Count_Fatality", title="Fatalities Over Years", markers=True)
+    st.plotly_chart(fig_trend, use_container_width=True)
 
-    with st.expander("👥 3️⃣ Casualties by Road User Type", expanded=True):
-        fig, ax = plt.subplots(figsize=(12, 6))
-        sns.barplot(data=df, x='Casualty_Road_User_Type', y='Casualty_Count', estimator=sum, ci=None, ax=ax)
-        ax.set_ylabel("Casualty Count")
-        ax.set_xlabel("Road User Type")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        st.pyplot(fig)
-        st.caption("📌 Vehicle occupants and pedestrians show the highest casualty rates.")
+    # Driver Category vs Severity (only if both columns exist)
+    if "Driver_Category" in driver_df.columns and "Crash_Severity" in driver_df.columns:
+        driver_cat = driver_df.groupby(["Driver_Category", "Crash_Severity"])["Count_Casualty_Fatality"].sum().reset_index()
+        fig_driver = px.density_heatmap(driver_cat, x="Driver_Category", y="Crash_Severity", z="Count_Casualty_Fatality",
+                                        title="Driver Category vs Crash Severity")
+        st.plotly_chart(fig_driver, use_container_width=True)
 
-    with st.expander("⚖️ 4️⃣ Casualty Severity by Gender", expanded=True):
-        fig, ax = plt.subplots(figsize=(12, 6))
-        sns.countplot(data=df, x='Casualty_Severity', hue='Casualty_Gender', ax=ax)
-        ax.set_ylabel("Count")
-        ax.set_xlabel("Severity Level")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        st.pyplot(fig)
-        st.caption("📌 Severity levels are fairly balanced across gender, with slight male dominance in high-severity cases.")
+# Regional Patterns Section
+elif section == "Regional Patterns":
+    st.subheader("🗺️ Regional Crash Patterns")
 
-with tab2:
-    col3, col4 = st.columns(2)
+    region_names = crash_df["Crash_Police_Region"].dropna().unique().tolist()
+    selected_region = st.selectbox("Select a Police Region:", ["All"] + sorted(region_names))
 
-    with col3:
-        st.subheader("5️⃣ Casualties by Region")
-        fig, ax = plt.subplots(figsize=(12, 8))
-        sns.barplot(data=df, x='Location', y='Casualty_Count', estimator=sum, ci=None,
-                    order=df.groupby('Location')['Casualty_Count'].sum().sort_values(ascending=False).index, ax=ax)
-        ax.tick_params(axis='x', rotation=45)
-        for label in ax.get_xticklabels():
-            label.set_horizontalalignment('right')
-        ax.set_ylabel("Casualty Count")
-        plt.tight_layout()
-        st.pyplot(fig)
-        st.caption("📌 SEQ and Metro areas report the highest number of casualties.")
+    # Filter crash and casualty data based on selected region
+    filtered_crash_df = crash_df.copy()
+    filtered_casualty_df = casualty_df.copy()
+    if selected_region != "All":
+        filtered_crash_df = filtered_crash_df[filtered_crash_df["Crash_Police_Region"].str.strip() == selected_region.strip()]
+        filtered_casualty_df = filtered_casualty_df[filtered_casualty_df["Crash_PoliceRegion"].str.strip() == selected_region.strip()]
 
-    with col4:
-    # Don't use year-filtered df — use full data
-        full_df = load_data()
+    # Aggregate fatalities by region (recalculated after filtering)
+    region_fatal = filtered_crash_df.groupby("Crash_Police_Region")["Count_Fatality"].sum().reset_index()
 
-    # Group data by Crash Year and sum Fatalities
-    annual_fatalities = full_df.groupby('Crash_Year')['Count_Casualty_Fatality'].sum().reset_index()
+    # Choropleth map
+    if not region_fatal.empty:
+        fig_map = px.choropleth_mapbox(region_fatal,
+                                       geojson=geojson,
+                                       locations="Crash_Police_Region",
+                                       featureidkey="properties.REGION",
+                                       color="Count_Fatality",
+                                       mapbox_style="carto-positron",
+                                       center={"lat": -22.5, "lon": 145},
+                                       zoom=4.5,
+                                       title="Fatalities by Police Region")
+        st.plotly_chart(fig_map, use_container_width=True)
 
-    st.subheader("6️⃣ Annual Fatalities Trend")
+    # Casualties by region - show horizontal bar with consistent width and value labels
+    if not filtered_casualty_df.empty:
+        region_cas = filtered_casualty_df.groupby("Crash_PoliceRegion")["Casualty_Count"].sum().reset_index()
+        fig_bar = px.bar(region_cas,
+                         y="Crash_PoliceRegion",
+                         x="Casualty_Count",
+                         orientation="h",
+                         text="Casualty_Count",
+                         title="Casualties by Region",
+                         height=400)
+        fig_bar.update_layout(xaxis_range=[0, max(region_cas["Casualty_Count"]) * 1.1])
+        st.plotly_chart(fig_bar, use_container_width=True)
 
-    # Plot the Annual Fatalities Trend
-    fig, ax = plt.subplots(figsize=(12, 8))
-    sns.lineplot(data=annual_fatalities, x='Crash_Year', y='Count_Casualty_Fatality', marker='o', ax=ax)
-    ax.set_ylabel("Fatalities Count")
-    ax.set_xlabel("Year")
-    plt.xticks(rotation=45)
-    plt.tight_layout()
-    
-    # Show the plot
-    st.pyplot(fig)
-    
-    # Add a caption for context
-    st.caption("📌 Some years show spikes in fatalities; cross-referencing policy may help explain trends.")
-
-
-with tab3:
-    st.subheader("7️⃣ Crash Severity vs Driver Category")
-    fig, ax = plt.subplots(figsize=(14, 8))
-    ct = pd.crosstab(df['Driver_Category'], df['Crash_Severity'])
-    sns.heatmap(ct, annot=True, fmt='d', cmap='YlOrRd', ax=ax, annot_kws={'fontsize': 10})
-    ax.set_xlabel("Crash Severity")
-    ax.set_ylabel("Driver Category")
-    plt.tight_layout()
-    st.pyplot(fig)
-    st.caption("📌 Fatalities are concentrated among unlicensed and senior drivers.")
-
-    st.subheader("8️⃣ Impact Score by Driver Category")
-    df['Impact_Score'] = df['Count_Casualty_Fatality'] * 3 + df['Casualty_Count']
-    fig, ax = plt.subplots(figsize=(14, 8))
-    sns.barplot(data=df, x='Driver_Category', y='Impact_Score', estimator=sum, ci=None,
-                order=df.groupby('Driver_Category')['Impact_Score'].sum().sort_values(ascending=False).index, ax=ax)
-    ax.set_ylabel("Impact Score")
-    ax.tick_params(axis='x', rotation=45)
-    for label in ax.get_xticklabels():
-        label.set_horizontalalignment('right')
-    plt.tight_layout()
-    st.pyplot(fig)
-    st.caption("📌 Unlicensed drivers top the list in overall impact, combining fatal and non-fatal outcomes.")
-
-
-
-
-
-with st.expander("🧠 Final Insights Summary", expanded=False):
-    st.write("""
-    - 🚩 **Unlicensed and Provisional Drivers** contribute most to fatal crashes.
-    - 📍 **Metro and SEQ** regions are hotspots for high-impact incidents.
-    - 📈 Fatalities trend varies year to year but needs more analysis for causality.
-    - 👥 **16–24 year olds** are the most affected age group.
-    - 🛑 **Road User Type** shows majority casualties from vehicle occupants and pedestrians.
-    """)
+        # Restraint Use Pie (after filtering)
+        fig_restraint = px.pie(filtered_casualty_df, names="Casualty_Restraint_Helmet_Use", title="Safety Equipment Use")
+        st.plotly_chart(fig_restraint, use_container_width=True)
+    else:
+        st.info("No casualty data available for this region.")
